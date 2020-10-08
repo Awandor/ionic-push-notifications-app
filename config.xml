@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="com.awandor.notificaciones.push.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Notificaciones Push App</name>
+    <description>Aplicación híbrida creada con Angular 9 y Ionic 6 que usando la API de OneSignal y el servicio Cloud Messagin de Google Firebase recibe notificaciones push enviadas desde Postman simulando un backend y las almacena en el Storage</description>
+    <author email="hi@ionicframework.com" href="http://awandor.com/">Awandor</author>
     <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
