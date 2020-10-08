@@ -1,20 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title>
+            Push Notifications App
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button (click)="borrarMensajes()" color="danger">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-list>
+
+        <ion-list-header>
+            <ion-label>User ID</ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let notificacion of notificacionesPushRecibidas">
+            <ion-label>
+                {{pushService.userId}}
+            </ion-label>
+        </ion-item>
+
+        <ion-list-header>
+            <ion-label>Notificaciones</ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let notificacion of notificacionesPushRecibidas">
+            <ion-label>
+                <h3>Title: {{notificacion.title}}</h3>
+                <p>Body: {{notificacion.body}}</p>
+                <p>Additional: {{notificacion.additionalData | json}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
 </ion-content>
