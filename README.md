@@ -27,7 +27,7 @@ Instalamos el plugin de OneSignal
 
 > `npm install @ionic-native/onesignal`
 
-Se usa como todos los plugin: se importa en app.module y se provee en el constructor, después hay una serie de métodos
+Se usa como todos los plugin: se importa en `app.module` y se provee en el constructor del componente, después hay una serie de métodos
 
 ¿Dónde lo proveemos?
 
@@ -116,11 +116,11 @@ Lo importamos en app.module con .forRoot()
 Ahora importamos `Storage` lo inyectamos en el constructor de push.service
 
 Tengo unos 20-30 segundos para guardar en el Storage Nativo,
-podemos manejarlo con un observable de rxjs pero lo vamos a hacer un EventEmitter de Angular (que también es un tipo de observable).
+podemos manejarlo con un observable de rxjs pero lo vamos a hacer con un EventEmitter de Angular (que también es un tipo de observable).
 
 Este EventEmitter se disparará cuando recibimos la notificación y lo que emite es el payload de la respuesta
 
-Ahora en home.page creamos un arreglo de notificaciones vacío y es el que va a recibir el evento del servicio suscribiéndose al emisor
+Ahora en `home.page` creamos un arreglo de notificaciones vacío y es el que va a recibir el evento del servicio suscribiéndose al emisor
 
 Una vez terminado con el Storage hay que volver a ejecutar > `ionic cordova run android -l`
 
@@ -131,17 +131,17 @@ Probemos a enviar una notificación push cuando la app está cerrada.
 
 La recibimos pero al tocar la notificación y abrir la app no está en Notificaciones recibidas
 
-Vamos a push.services > handleNotificationOpened vamos a hacer que el callback function del subscribe sea async
-y ponemos await a notificacionRecibida
+Vamos a `push.services` > `handleNotificationOpened` vamos a hacer que el callback function del subscribe sea async
+y ponemos await a `notificacionRecibida`
 
-Como notificacionRecibida es asíncrona ponemos await también a guardarNotificacionesEnStorage
+Como notificacionRecibida es asíncrona ponemos await también a `guardarNotificacionesEnStorage`
 
 Todos los awaits nos sirven para asegurarnos de que se cumplen todos los procesos, ahora ya funciona.
 
 
 ## Obtener el ID único del suscriptor para enviar Notificaciones Push privadas
 
-En push.service creamos propiedad userId y creamos un método en configuracionInicial
+En `push.service` creamos propiedad `userId` y creamos un método en configuracionInicial
 
 Ya tenemos el ID del dispositivo que funciona como ID de usuario suscrito
 
@@ -165,7 +165,7 @@ Si corremos el POST en Postman nos dice que falta app_id y que hay que especific
 
 Vamos a crear manualmente el json, en Postman > Body > Raw & JSON
 
-El appId lo tenemos en push.service > startInit
+El appId lo tenemos en `push.service` > `startInit`
 
 {
     "app_id": "02cbb5f1-b294-4eeb-be6c-ac1dd997a79b",
@@ -198,9 +198,9 @@ La clave es el parámetro `include_player_ids` su valor es un arreglo de strings
 
 ## Borrar mensajes recibidos
 
-Creamos método en push.service y lo implementamos en home
+Creamos método en `push.service` y lo implementamos en home
 
-Si no funciona a la primera es necesario bajar y levantar el servicio android
+Si no funciona a la primera es necesario bajar y levantar el servicio de cordova que corre android
 
 
 
@@ -215,10 +215,23 @@ Si en este punto borro accidentalmente algo puedo recuperarlo con > `git checkou
 Que nos recontruye los archivos tal y como estaban en el último commit.
 
 Enlazamos el repositorio local con un repositorio externo en GitHub donde tenemos cuenta y hemos creado un repositorio
-`git remote add origin https://github.com/Awandor/ionic-pelicuals-app.git`
+`git remote add origin https://github.com/Awandor/ionic-push-notifications-app.git`
 
 Situarnos en la rama master > `git branch -M master`
 
 Subir todos los cambios a la rama master remota > `git push -u origin master`
 
 Para reconstruir en local el código de GitHub nos bajamos el código y ejecutamos `npm install` que instala todas las dependencias
+
+
+## Tags y Releases
+
+Crear un tag en Github y un Release
+
+> `git tag -a v1.0.0 -m "Versión 1 - Lista para producción"`
+
+> `git tag` muestra los tags
+
+> `git push --tags` > sube los tags al repositorio remoto
+
+En github vamos a Releases > Tags > Add release notes
